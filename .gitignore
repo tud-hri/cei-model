@@ -1,0 +1,14 @@
+/venv/
+/.idea/
+/data/
+*.csv
+*.pkl
+*.txt
+!README.md
+!requirements.txt
+*.db
+*.tif
+*.tfw
+*.aux
+*.zip
+*.mat

@@ -1,0 +1,10 @@
+autograd==1.4
+descartes==1.1.0
+matplotlib==3.5.3
+numpy==1.23.2
+opencv_python_headless==4.6.0.66
+PyQt5==5.15.7
+pyqtgraph==0.12.4
+scipy==1.6.0
+Shapely==1.8.4
+tqdm==4.64.0
