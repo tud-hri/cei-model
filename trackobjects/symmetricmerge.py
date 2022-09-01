@@ -1,3 +1,21 @@
+"""
+Copyright 2022, Olger Siebinga (o.siebinga@tudelft.nl)
+
+This file is part of the CEI-model repository.
+
+The CEI-model repository is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The CEI-model repository is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with the CEI-model repository. If not, see <https://www.gnu.org/licenses/>.
+"""
 import autograd.numpy as np
 import shapely.affinity
 import shapely.geometry
@@ -58,7 +76,7 @@ class SymmetricMergingTrack(Track):
             look_up_table[index, :] = self.get_collision_bounds(travelled_distance, vehicle_width, vehicle_length)
 
         self._upper_bound_approximation_slope, self._upper_bound_approximation_intersect, _, _, _ = stats.linregress(np.array(entries) / 10., look_up_table[:, 1])
-        lower_bound_index = np.where(entries > self._lower_bound_threshold * 10)[0][0]
+        lower_bound_index = np.where(entries > np.array(self._lower_bound_threshold * 10))[0][0]
 
         self._lower_bound_approximation_slope, self._lower_bound_approximation_intersect, _, _, _ = stats.linregress(np.array(entries[lower_bound_index:]) / 10.,
                                                                                                                    look_up_table[lower_bound_index:, 0])
