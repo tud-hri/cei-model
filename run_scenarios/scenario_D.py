@@ -55,7 +55,7 @@ if __name__ == '__main__':
                                               resistance_coefficient=0.0005, constant_resistance=0.1)
 
     cei_agent_1 = CEIAgent(left_point_mass_object, TrackSide.LEFT, simulation_constants.dt, sim_master, track,
-                           risk_bounds=(.2, .3),
+                           risk_bounds=(.3, .4),
                            saturation_time=2.,
                            time_horizon=4.,
                            preferred_velocity=10.,

@@ -34,6 +34,8 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
     figure.suptitle(title)
 
     time = [t * data['dt'] / 1000 for t in range(len(data['velocities'][TrackSide.LEFT]))]
+    titles = ['a)', 'b)', 'c)', 'd)', 'e)', 'f)', 'g)', 'h)', 'i)', 'j)']
+    title_iterator = titles.__iter__()
 
     if plot_risks and plot_gap:
         grid = plt.GridSpec(6, 1, wspace=0.1, hspace=0.7)
@@ -88,6 +90,7 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
 
     pos_plot.set_ylabel('X position [m]')
     pos_plot.legend(lines.values(), lines.keys())
+    pos_plot.set_title(title_iterator.__next__(), x=-0.12, y=0.4, va='center')
 
     # Velocity plot
     for side in TrackSide:
@@ -108,7 +111,10 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
         upper_bound_marker = mpl.lines.Line2D([], [], color='k', marker='*', linestyle='None',  label='Upper bound re-plan')
         lower_bound_marker = mpl.lines.Line2D([], [], color='k', marker='o', linestyle='None', label='Lower bound re-plan')
 
-        vel_plot.legend(handles=[upper_bound_marker, lower_bound_marker])
+        vel_plot.legend(handles=[upper_bound_marker, lower_bound_marker], loc='lower right')
+
+    vel_plot.set_title(title_iterator.__next__(), x=-0.12, y=0.4, va='center')
+    vel_plot.set_ylabel('Velocity [m/s]')
 
     # Input (acceleration) plot
     true_acceleration = {}
@@ -120,6 +126,7 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
 
     input_plot.set_ylabel('Acceleration [m/s^2]')
     input_plot.set_ylim(y_bounds)
+    input_plot.set_title(title_iterator.__next__(), x=-0.12, y=0.4, va='center')
 
     # risk plot
     if plot_risks:
@@ -127,11 +134,16 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
 
         for side in TrackSide:
             risk_plot.plot(np.array(data['positions'][side])[:, 1], data['perceived_risks'][side], c=plot_colors[side])
-            risk_plot.hlines(data['risk_bounds'][side], [0], [bounds_max], linestyles='dashed', colors=plot_colors[side])
+
+            if data['risk_bounds'][side] == data['risk_bounds'][side.other]:
+                risk_plot.hlines(data['risk_bounds'][side], [0], [bounds_max], linestyles='dashed', colors='grey')
+            else:
+                risk_plot.hlines(data['risk_bounds'][side], [0], [bounds_max], linestyles='dashed', colors=plot_colors[side])
 
         risk_plot.set_xlabel('Y position [m]')
         risk_plot.set_ylabel('perceived risk')
         risk_plot.set_ylim((0.0, 1.0))
+        risk_plot.set_title(title_iterator.__next__(), x=-0.12, y=0.4, va='center')
 
     # Gap plot
     if plot_gap:
@@ -141,6 +153,7 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
 
         gap_plot.set_ylabel('gap [m]')
         gap_plot.set_xlabel('Leading vehicle Y position [m]')
+        gap_plot.set_title(title_iterator.__next__(), x=-0.12, y=0.4, va='center')
 
     return figure
 
@@ -148,7 +161,7 @@ def plot_trial(data, title='', plot_gap=True, mark_replans=False):
 if __name__ == '__main__':
     os.chdir(os.getcwd() + '\\..')
 
-    all_files = ['data/scenario_D.pkl']
+    all_files = ['data/scenario_A.pkl', 'data/scenario_B.pkl', 'data/scenario_C.pkl', 'data/scenario_D.pkl']
 
     for file in all_files:
         with open(file, 'rb') as f:

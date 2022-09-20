@@ -48,7 +48,7 @@ if __name__ == '__main__':
                                              resistance_coefficient=0.0005, constant_resistance=0.1)
 
     right_point_mass_object = PointMassObject(track,
-                                              initial_position=track.traveled_distance_to_coordinates(0.0, track_side=TrackSide.RIGHT),
+                                              initial_position=track.traveled_distance_to_coordinates(1.2, track_side=TrackSide.RIGHT),
                                               initial_velocity=9.,
                                               cruise_control_velocity=9.,
                                               use_discrete_inputs=False,
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                            risk_bounds=(.2, .5),
                            saturation_time=2.,
                            time_horizon=4.,
-                           preferred_velocity=10.,
+                           preferred_velocity=9.,
                            vehicle_width=simulation_constants.vehicle_width,
                            belief_frequency=4,
                            vehicle_length=simulation_constants.vehicle_length,
