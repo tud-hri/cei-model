@@ -1,5 +1,5 @@
 # Simple Merging Simulation for CEI model
-This project contains a simulation environment for two vehicle in a simplified merging scenario. The scenario is symmetrical and the vehicles are modelled as point mass objects that can move in a single dimension. The acceleration of these vehicles can be controlled by computational agents. This simulation environment was created to study the Communication-Enabled Interaction Model (CEI Model). 
+This project contains a simulation environment for two vehicle in a simplified merging scenario. The scenario is symmetrical and the vehicles are modelled as point mass objects that can move in a single dimension. The acceleration of these vehicles can be controlled by computational agents. This simulation environment was created to study the Communication-Enabled Interaction Model (CEI Model). This repository was tested with Python 3.12.
  
 
 ## CEI Model

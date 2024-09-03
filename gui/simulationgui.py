@@ -359,7 +359,7 @@ class SimulationGui(QtWidgets.QMainWindow):
         self.ui.lowRiskBoundDoubleSpinBox.setValue(risk_bounds[0])
         self.ui.highRiskBoundDoubleSpinBox.setValue(risk_bounds[1])
         self.ui.replanningLineEdit.setText(str(did_replanning))
-        self.ui.inputSlider.setValue(action_plan[0] * 100)
+        self.ui.inputSlider.setValue(int(action_plan[0] * 100))
 
     def _enable_recording(self):
         if not self.is_recording:
